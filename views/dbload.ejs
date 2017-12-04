@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Twitter Scrapping</title>
+        <meta charset="iso-8859-1">
+        <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+</head>
+<body>
+    <div>
+        <header id="header" class="clear">
+            <div id="hgroup">
+                <h1><a href="#">Twitter Scrapper</a></h1><Br/><Br/>
+                <h2></h2>
+            </div>
+            <nav>
+                    <li><a href="/">Search Tweets</a></li>
+                    <li><a href="/dbload/drop">Drop all results</a> </li>
+                    <li><a href="/dbload/Graph">Generate Graphs</a></li>
+            </nav></Br></Br>
+        </header>
+    </div>
+    <div align="center">
+        <h4 >Type to filter your search</h4><Br/>
+        <form action='' method='POST'>
+            <INPUT type = "text" name = "searchquerry" placeholder="collection name" required></Br>
+            <% for(j=1; j<inputarray.length; j++) {%>
+            <INPUT type = "text" name = '<%=inputarray[j]%>' placeholder="<%=inputarray[j]%>"></Br>
+            <% } %>
+            <INPUT type = "submit" value = "validate">
+        </form>
+    </div>
+    <style>
+        ul {
+            border : 2px solid black;
+            padding : 20px;
+            margin : 20px;
+        }
+        h1 {
+            margin-left: 150px;
+        }
+         body, html {
+             height: 100%;
+             margin: 0;
+             background-image: url("/images/white.jpg");
+             background-position: center;
+             background-size: cover;
+         }
+         .center {
+             text-align: center;
+         }
+         .pagination {
+             display: inline-block;
+         }
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+            border: 1px solid #4CAF50;
+        }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {background-color: #ddd;
+        }
+
+
+    </style>
+
+    <%  if (isdata!=0) {data.forEach(function(data){%>
+        <ul onclick="myFunction(<%=i%>)">
+            <li>tweet numero : <%=i%></li>
+            <li>tweet id : <%=data.id%></li>
+            <li>tweet text : <%=data.text %></li>
+            <li>retweeted :<%=data.retweet_count%><%=' '%>times</li>
+            <li id=<%=i%> hidden>created_at : <%=data.created_at%></li>
+        </ul>
+    <%i=i+1; })}%><Br/>
+
+    <script>
+        function myFunction(a) {
+            var x = document.getElementById(a);
+            if (x.style.display === 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }
+    </script>
+</body>

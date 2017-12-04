@@ -1,0 +1,59 @@
+<html>
+<head>
+
+</head>
+<body>
+    <h1>These are generated Graphs for the collection : <%=name%></h1>
+    <script>
+        window.onload = function () {
+            var chart2 = new CanvasJS.Chart("chart2", {
+                theme: "light2",
+                animationEnabled: true,
+                exportEnabled : true,
+                exportFileName: "<%=name%> tweet's Users location",
+                title: {
+                    text: "Tweet's User Locations "
+                },
+                data: [{
+                    type: "pie",
+                    indexLabel: "{label} - {y}",
+                    yValueFormatString: "###0",
+                    dataPoints: [
+                        <%result1.forEach(function(result){%>
+                        {y : <%=result.count%>, label : "<%=result._id%>"},<%})%>
+                    ]
+
+                }]
+            });
+            chart2.render();
+            var chart3 = new CanvasJS.Chart("chart3", {
+                theme: "light2",
+                animationEnabled: true,
+                exportEnabled : true,
+                exportFileName: "<%=name%> tweet's location",
+                title: {
+                    text: "Tweet's Locations "
+                },
+                data: [{
+                    type: "pie",
+                    indexLabel: "{label} - {y}",
+                    yValueFormatString: "###0",
+                    dataPoints: [
+                        <%result2.forEach(function(result){%>
+                        {y : <%=result.count%>, label : "<%=result._id%>"},<%})%>
+                    ]
+
+                }]
+            });
+            chart3.render();
+        }
+    </script>
+
+
+    </Br>
+    <div id="chart2" style="height: 370px; width: 100%;"></div>
+    <div id="chart3" style="height: 370px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+
+</html>

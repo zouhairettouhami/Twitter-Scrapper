@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twitter Scrapping</title>
+    <meta charset="iso-8859-1">
+    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+<body>
+    <div class="bg">
+        <div>
+            <header id="header" class="clear">
+                <div id="hgroup">
+                    <h1><a href="#">Twitter Scrapper</a></h1><Br/><Br/>
+                    <h2></h2>
+                </div>
+                <nav>
+                    <li><a href="dbload">Load Tweets</a></li>
+                </nav>
+            </header>
+        </div><Br/><Br/>
+        <style>
+            ul {
+                border : 2px solid black;
+                margin: 20px;
+                padding: 20px;
+
+            }
+            h1 {
+                margin-left: 150px;
+                padding: 0;
+            }
+            body , html{
+                height: 100%;
+                margin: 0;
+            }
+
+            .bg {
+                /* The image used */
+                background-image: url("/images/wall.jpg");
+
+                /* Full height */
+                height: 100%;
+
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+        <div align="center">
+            <h4 >Type your search querry and the number of tweets you want</h4><Br/>
+            <form action='' method='POST'>
+
+                <INPUT type = "text" name = "querry" placeholder="Keyword">
+                <iNPUT type="text" name="nbrtweets" placeholder="number of tweets">
+                <INPUT type = "submit" value = "validate">
+            </form>
+        </div>
+    </div><Br/><Br/><Br/><Br/>
+
+    <% if (search!=0){ data.forEach(function(data){%>
+        <ul onclick="document.getElementById('a').classList.toggle(screen)">
+                <li>tweet numero : <%=i%></li>
+                <li>tweet id : <%=data.id%></li>
+                <li>tweet text : <%=data.text %></li>
+                <li>retweeted :<%=data.retweet_count%><%=' '%>times</li>
+                <li>created at : <%= data.created_at%></li>
+                <li>User name : <%= data.user.name%></li>
+                <li>User location : <%= data.user.location%></li>
+                <% if (data.place!=null) {%><li>User country : <%= data.place.country%></li><%}%>
+                <li>entities : <%= data.entities%></li>
+        </ul><Br/>
+
+    <%i=i+1; })}  %>
+
+
+</body>
